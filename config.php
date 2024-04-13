@@ -1,8 +1,13 @@
 <?php
 
+include_once "./vendor/autoload.php";
+include_once "./send_reply.php";
+include_once "./send_ai.php";
+
 // facebook
-$access_token = 'EAAOOom4rGZAQBO3mvNrzcIAR6qeSSk0xBpqV6GxrZCdlwC1ZBQYBRcouF33YasGd3W6OEr7ToVHHLHl2erqDZBZA7ZAOQvJxdNZC68pM3qOz4JLNbFtt47SrLC1lK14QZCxeMboYSUapLjkNILO0wjXAlvGxirflWlQHYRuEfGYNEQzF7uXiGFeIUACsJJ13hZCUz2nHQvuut09aor1aI';
-$my_verify_token = 'davebot123';
+$access_token =
+   "EAAOOom4rGZAQBO3yIZCPA2d0RWXTQS6zAgZBZC54thSMY8OK10oSdtHGiWFUNIUHZBxqv13kdB1L35fctxEAB6qZAWif2kbZA2mGjxveZBHRfjhZCyizAnc4ZB8OMS4yrl2OvMscVWpCdlqB5CZBNPj3X5EugKiPvby6psaQckFy03IupiSOzpZCZCV6k9bvDPZCb67REulzqaoGoosq6ITUIp";
+$my_verify_token = "davebot123";
 
 // open ai
-$open_ai_secret = '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';
+$open_ai_secret = "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";
