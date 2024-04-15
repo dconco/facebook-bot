@@ -1,10 +1,11 @@
 <?php
 
+include_once __DIR__ . "/config.php";
+echo 'Hello';
 use Orhanerday\OpenAi\OpenAi;
-use Exception;
 
 $open_ai = new OpenAi($open_ai_secret);
-$open_ai->setORG("org-4G8ispOyVLV44qeShKQEmOxP");
+$open_ai->setORG("org-vPGhQZnSjOOejGq7aUhjwYoB");
 
 /**
  * SEND AI FUNCTION
@@ -34,9 +35,11 @@ function send_ai(string $message)
          $data = json_decode($chat);
          return $data->choices[0]->message->content;
       } else {
-         throw new Error('Error while fetching Response!');
+         throw new Error("Error while fetching Response!");
       }
    } catch (Exception $e) {
       return "Uncaught Error: " . $e->message;
    }
 }
+
+echo send_ai("Hello");

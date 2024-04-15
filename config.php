@@ -2,7 +2,6 @@
 
 include_once "./vendor/autoload.php";
 include_once "./send_reply.php";
-include_once "./send_ai.php";
 
 // facebook
 $access_token =
@@ -10,4 +9,4 @@ $access_token =
 $my_verify_token = "davebot123";
 
 // open ai
-$open_ai_secret = "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";
+$open_ai_secret = "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";
