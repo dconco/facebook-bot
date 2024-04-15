@@ -6,7 +6,8 @@ include_once __DIR__ . "/send_ai.php";
 $challenge = $_GET["hub_challenge"];
 $verify_token = $_GET["hub_verify_token"];
 
-if ($my_verify_token === $verify_token) {
+if ($my_verify_token === $verify_token)
+{
    echo $challenge;
    exit();
 }
@@ -26,22 +27,26 @@ $message_time = date(
 
 $message1 = $message != null ? strtolower($message) : null;
 
-if ($message1 === "hi") {
-    $new_message = "Hello dear! How may we help you?";
-} else {
-    $new_message = send_ai($message);
+if ($message1 === "hi")
+{
+   $new_message = "Hey, am Spyrochat! How may we help you?";
+}
+else
+{
+   $new_message = send_ai($message);
 }
 
-if ($message != null) {
-$reply = [
-   "messaging_type" => "RESPONSE",
-   "recipient" => [
-      "id" => $sender_id,
-   ],
-   "message" => [
-      "text" => $new_message,
-   ],
-];
+if ($message != null)
+{
+   $reply = [
+      "messaging_type" => "RESPONSE",
+      "recipient" => [
+         "id" => $sender_id,
+      ],
+      "message" => [
+         "text" => $new_message,
+      ],
+   ];
 }
 
 $response = send_reply($access_token, $reply);
