@@ -1,19 +1,21 @@
 <?php
 
+include_once __DIR__ . "/config.php";
+
 use Orhanerday\OpenAi\OpenAi;
-use Exception;
 
 $open_ai = new OpenAi($open_ai_secret);
-$open_ai->setORG("org-4G8ispOyVLV44qeShKQEmOxP");
+$open_ai->setOrg("org-vPGhQZnSjOOejGq7aUhjwYoB");
 
 /**
  * SEND AI FUNCTION
  */
 function send_ai(string $message)
 {
-   try {
-      global $open_ai;
+   global $open_ai;
 
+   try
+   {
       // send message
       $chat = $open_ai->chat([
          "model" => "gpt-3.5-turbo",
@@ -30,13 +32,26 @@ function send_ai(string $message)
       ]);
 
       // send request back
-      if ($chat) {
-         $data = json_decode($chat);
-         return $data->choices[0]->message->content;
-      } else {
-         throw new Error('Error while fetching Response!');
+      if ($chat)
+      {
+         $data = json_decode($chat, false);
+
+         if (!$data->error)
+         {
+            return $data->choices[0]->message->content;
+         }
+
+         return $data->error->message;
       }
-   } catch (Exception $e) {
-      return "Uncaught Error: " . $e->message;
+      else
+      {
+         throw new Exception('Error while fetching Response!');
+      }
+   }
+   catch ( Exception $e )
+   {
+      return "Uncaught Error: " . $e->getMessage();
    }
 }
+
+print_r(send_ai('Hello'));

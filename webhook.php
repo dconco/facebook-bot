@@ -1,6 +1,7 @@
 <?php
 
-include_once "./config.php";
+include_once __DIR__ . "/config.php";
+include_once __DIR__ . "/send_ai.php";
 
 $challenge = $_GET["hub_challenge"];
 $verify_token = $_GET["hub_verify_token"];
@@ -23,17 +24,25 @@ $message_time = date(
    $response["entry"][0]["messaging"][0]["timestamp"]
 );
 
-$new_message = "Hello dear! How may we help you?";
+$message1 = $message != null ? strtolower($message) : null;
 
+if ($message1 === "hi") {
+    $new_message = "Hello dear! How may we help you?";
+} else {
+    $new_message = send_ai($message);
+}
+
+if ($message != null) {
 $reply = [
    "messaging_type" => "RESPONSE",
    "recipient" => [
       "id" => $sender_id,
    ],
    "message" => [
-      "text" => $message && $new_message,
+      "text" => $new_message,
    ],
 ];
+}
 
 $response = send_reply($access_token, $reply);
 $add_arr = [
