@@ -1,9 +1,11 @@
 <?php
 
+include_once realpath(__DIR__ . '/config.php');
+
 use Orhanerday\OpenAi\OpenAi;
 
 $open_ai = new OpenAi(getenv('OPEN_AI_SECRET'));
-$open_ai->setOrg("org-vPGhQZnSjOOejGq7aUhjwYoB");
+$open_ai->setOrg('org-vPGhQZnSjOOejGq7aUhjwYoB');
 
 /**
  * SEND AI FUNCTION
@@ -16,17 +18,17 @@ function send_ai(string $message)
    {
       // send message
       $chat = $open_ai->chat([
-         "model" => "gpt-3.5-turbo",
-         "messages" => [
-            [
-               "role" => "user",
-               "content" => $message,
-            ],
-         ],
-         "temperature" => 1.0,
-         "max_tokens" => 500,
-         "frequency_penalty" => 0,
-         "presence_penalty" => 0,
+       'model' => 'gpt-3.5-turbo',
+       'messages' => [
+        [
+         'role' => 'user',
+         'content' => $message,
+        ],
+       ],
+       'temperature' => 1.0,
+       'max_tokens' => 500,
+       'frequency_penalty' => 0,
+       'presence_penalty' => 0,
       ]);
 
       // send request back
@@ -48,6 +50,6 @@ function send_ai(string $message)
    }
    catch ( Exception $e )
    {
-      return "Uncaught Error: " . $e->getMessage();
+      return 'Uncaught Error: ' . $e->getMessage();
    }
 }
