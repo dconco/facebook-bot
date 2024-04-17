@@ -1,7 +1,8 @@
 <?php
 
-function send_reply(string $access_token, array $message): bool|array
+function send_reply(array $message): bool|array
 {
+   $access_token = getenv('FB_ACCESS_TOKEN');
    $url = "https://graph.facebook.com/v2.6/109664085466137/messages?access_token=$access_token";
 
    $options = [
@@ -17,7 +18,8 @@ function send_reply(string $access_token, array $message): bool|array
    $resp = file_get_contents($url, false, $context);
 
    // change response value to null, and return null
-   if ($resp) {
+   if ($resp)
+   {
       return json_decode($resp, true) or true;
    }
 

@@ -10,7 +10,7 @@ use Google\Cloud\Dialogflow\V2\SessionsClient;
 $sessionsClient = new SessionsClient([
     'credentials' => '../project/daveconcoproject-defffea864a6.json'
 ]);
-$session = $sessionsClient->sessionName('daveconcoproject', uniqid());
+$session = $sessionsClient->sessionName(getenv('PROJECT_ID'), uniqid());
 
 // User input
 $userInput = 'Hello!';

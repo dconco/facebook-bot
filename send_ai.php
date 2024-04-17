@@ -1,10 +1,8 @@
 <?php
 
-include_once __DIR__ . "/config.php";
-
 use Orhanerday\OpenAi\OpenAi;
 
-$open_ai = new OpenAi($open_ai_secret);
+$open_ai = new OpenAi(getenv('OPEN_AI_SECRET'));
 $open_ai->setOrg("org-vPGhQZnSjOOejGq7aUhjwYoB");
 
 /**
@@ -53,5 +51,3 @@ function send_ai(string $message)
       return "Uncaught Error: " . $e->getMessage();
    }
 }
-
-print_r(send_ai('Hello'));
